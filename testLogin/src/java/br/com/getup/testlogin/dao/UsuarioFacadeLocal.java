@@ -3,6 +3,7 @@ package br.com.getup.testlogin.dao;
 import br.com.getup.testlogin.model.Usuario;
 import java.util.List;
 import javax.ejb.Local;
+import javax.persistence.Query;
 
 /**
  *
@@ -24,5 +25,7 @@ public interface UsuarioFacadeLocal {
     public List<Usuario> findRange(int[] range);
     
     public int count();
+    
+    public  Query findNameBySenha (String consulta);
     
 }

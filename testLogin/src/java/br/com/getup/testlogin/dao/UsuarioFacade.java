@@ -23,4 +23,9 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         super(Usuario.class);
     }
     
+    public String convertStringEmMd5(String valor){
+    
+        return null;
+    }
+    
 }

@@ -2,6 +2,7 @@ package br.com.getup.testlogin.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -46,7 +47,12 @@ public abstract class AbstractFacade<T> {
         q.setFirstResult(range[0]);
         return q.getResultList();
     }
-
+   
+    public Query findNameBySenha(String consulta){
+               
+        return getEntityManager().createQuery(consulta); 
+     }
+    
     public int count() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         javax.persistence.criteria.Root<T> rt = cq.from(entityClass);
