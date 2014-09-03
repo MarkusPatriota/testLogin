@@ -48,9 +48,14 @@ public abstract class AbstractFacade<T> {
         return q.getResultList();
     }
    
-    public Query findNameBySenha(String consulta){
-               
-        return getEntityManager().createQuery(consulta); 
+    public boolean findNameBySenha(String nome,String senha){
+            List list= getEntityManager().createQuery("SELECT * FROM usuario_tb WHERE name="
+                     +"'"+nome+"'"+" and "+"senha="+"'"+senha+"'").getResultList();
+            if(list.size()>1){
+                System.err.println("Usuario correto!");
+                return true;
+            }
+        return false; 
      }
     
     public int count() {

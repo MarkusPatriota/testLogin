@@ -6,30 +6,10 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Login</title>
-        <h:outputStylesheet library="css" name="style.css"/>
-        <link href="././icones/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <title>Login</title>      
     </h:head>
     
     <h:body>
-        <div id="login">
-            <center>
-                <p:dialog header="Login" visible="true" closable="false" draggable="false" resizable="false" width="420">
-                    <center>
-                        <h:outputText value="Usuário ou senha incorretos!" rendered="#{param.erro}" style="color: darkred"/>
-                    </center>
-                    <h:form>
-                        <h:panelGrid columns="2" cellpadding="5">
-                            <p:outputLabel for="username" value="Usuario: " /> 
-                            <p:inputText id="username" required="true" value=""/>
-                            <p:outputLabel for="password" value="Senha: " />
-                            <p:password id="password" required="true" value=""/>
-                            <p:button value="Entrar" outcome="home" />
-                        </h:panelGrid>
-                    </h:form>
-                </p:dialog>
-            </center>
-        </div>
+    
     </h:body>
 </html>

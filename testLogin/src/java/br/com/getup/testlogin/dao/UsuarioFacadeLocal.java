@@ -26,6 +26,6 @@ public interface UsuarioFacadeLocal {
     
     public int count();
     
-    public  Query findNameBySenha (String consulta);
+    public boolean findNameBySenha(String nome,String senha);
     
 }

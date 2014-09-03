@@ -1,32 +1,30 @@
 package br.com.getup.testlogin.model;
 
+import br.com.getup.testlogin.bean.UsuarioManagedBean;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 /**
  *
  * @author MarkusPatriota
  */
 @Entity
-@NamedQueries(value ={@NamedQuery(name="Usuario.findByNomeSenha",query="SELECT u "
-        + "FROM usuario_tb u WHERE u.nome=:nome and u.senha=:senha")})
 @Table(name="usuario_tb")
 public class Usuario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
-    
-    @Transient
-    private static final String FIND_BY_NOME_SENHA="Usuario.findByNomeSenha";
-    
+       
     @Column
     private String name;
     
@@ -46,6 +44,19 @@ public class Usuario {
     }
     
     public void setSenha(String senha) {
+        try {
+            MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+            byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : messageDigest) {
+                hexString.append(String.format("%02X", 0xFF & b));
+            }
+            senha = hexString.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UsuarioManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(UsuarioManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.senha = senha;
     }
     
